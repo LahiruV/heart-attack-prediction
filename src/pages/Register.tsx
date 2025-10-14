@@ -14,9 +14,7 @@ export function Register() {
   const [userInputCode, setUserInputCode] = useState<string>("")
   const { login: authLogin } = useAuth()
   const [error, setError] = useState<string | null>(null)
-  const [formData, setFormData] = useState<
-    RegisterDto & { confirmPassword: string }
-  >({
+  const [formData, setFormData] = useState<RegisterDto & { confirmPassword: string }>({
     name: '',
     email: '',
     password: '',
@@ -24,6 +22,7 @@ export function Register() {
     phone: '',
     dob: '',
   })
+
   const authenticateCode = () => Math.floor(100000 + Math.random() * 900000).toString()
   const registerMutation = useRegister()
   const sendMailMutation = useSendMail()
@@ -31,12 +30,10 @@ export function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
-
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match')
       return
     }
-
     try {
       const code = authenticateCode()
       setVerificationCode(code)
@@ -47,7 +44,7 @@ export function Register() {
       })
       toast.success('Verification code sent to your email.')
       setIsOpen(true)
-    } catch (err) {
+    } catch {
       toast.error('Failed to send verification code. Please try again.')
     }
   }
@@ -62,11 +59,10 @@ export function Register() {
           phone: formData.phone,
           dob: formData.dob,
         } as RegisterDto)
-
         toast.success("Email verified and account created successfully!")
         authLogin(token)
         navigate("/")
-      } catch (err) {
+      } catch {
         toast.error("Registration failed. Please try again.")
       }
     } else {
@@ -74,22 +70,24 @@ export function Register() {
     }
   }
 
-
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden flex">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden flex min-h-[500px]">
+        {/* Left Image */}
         <div className="hidden lg:block lg:w-1/2 relative">
           <img
-            src="https://images.unsplash.com/photo-1653569397345-762ee0f4579e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="University campus"
+            src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=987"
+            alt="Heart health"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         </div>
+
+        {/* Form */}
         <div className="w-full lg:w-1/2 p-8">
           <div className="flex items-center justify-center space-x-3 mb-8">
-            <UserPlus className="h-8 w-8 text-yellow-500" />
-            <h1 className="text-2xl font-bold text-gray-900">Create Account</h1>
+            <UserPlus className="h-8 w-8 text-red-500" />
+            <h1 className="text-2xl font-bold text-gray-900">Create Account - Zenra Health</h1>
           </div>
 
           {error && (
@@ -99,38 +97,35 @@ export function Register() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
               <input
                 type="text"
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
+            {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
               <input
                 type="email"
                 id="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
+            {/* Phone */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
               <input
                 type="tel"
                 id="phone"
@@ -139,61 +134,56 @@ export function Register() {
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={formData.phone}
-                onChange={(e) => {
-                  const onlyNums = e.target.value.replace(/\D/g, '')
-                  setFormData({ ...formData, phone: onlyNums })
-                }}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') })}
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
+            {/* DOB */}
             <div>
-              <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
-                Date of Birth
-              </label>
+              <label htmlFor="dob" className="block text-sm font-medium text-gray-700">Date of Birth</label>
               <input
                 type="date"
                 id="dob"
                 value={formData.dob}
                 onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2 pr2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 max={new Date().toISOString().split("T")[0]}
                 required
               />
             </div>
 
+            {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
               <input
                 type="password"
                 id="password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
+            {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Re-enter Password
-              </label>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Re-enter Password</label>
               <input
                 type="password"
                 id="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+              className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
               disabled={registerMutation.isPending}
             >
               {registerMutation.isPending ? (
@@ -208,13 +198,13 @@ export function Register() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}
-              <Link to="/login" className="font-medium text-yellow-500 hover:text-yellow-600">
-                Sign in
-              </Link>
+              <Link to="/login" className="font-medium text-red-500 hover:text-red-600">Sign in</Link>
             </p>
           </div>
         </div>
       </div>
+
+      {/* Verification Modal */}
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm">
@@ -247,7 +237,7 @@ export function Register() {
 
             <button
               onClick={handleVerify}
-              className="mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+              className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
             >
               Verify
             </button>

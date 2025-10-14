@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Sparkles } from 'lucide-react'
+import { Activity, Sparkles } from 'lucide-react'
 
 export function AuthHeader() {
   const location = useLocation()
@@ -11,15 +11,17 @@ export function AuthHeader() {
         <div className="flex justify-between items-center h-16">
           {/* Brand */}
           <Link to="/" className="flex items-center space-x-2">
-            <Sparkles className="h-8 w-8 text-yellow-500" />
-            <span className="text-xl font-bold text-gray-900">Zenra-Events</span>
+            <Activity className="h-6 w-6 text-red-500" />
+            <Link to="/" className="text-xl font-bold text-red-500">
+              <span className="text-gray-500">Zenra</span> Health
+            </Link>
           </Link>
 
           {/* Action Link */}
           <div className="flex items-center space-x-4">
             <Link
               to={isLogin ? '/register' : '/login'}
-              className="text-sm font-medium text-yellow-500 hover:text-yellow-600"
+              className="text-sm font-medium text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg shadow-md transition"
             >
               {isLogin ? 'Create Account' : 'Sign In'}
             </Link>

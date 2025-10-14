@@ -7,7 +7,7 @@ export function AuthLayout() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <AuthHeader />
-      <div className="pt-24 flex-grow">
+      <div className="pt- flex-grow">
         <Outlet />
       </div>
       <AuthFooter />

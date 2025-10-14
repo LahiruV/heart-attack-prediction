@@ -32,20 +32,23 @@ export function Login() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden flex min-h-[500px]">
+        {/* Left Image */}
         <div className="hidden lg:block lg:w-1/2 relative">
           <img
-            src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="University library"
+            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=987"
+            alt="Heart health"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         </div>
+
+        {/* Form */}
         <div className="w-full lg:w-1/2 p-8">
           <div className="flex items-center justify-center space-x-3 mb-8">
-            <LogIn className="h-8 w-8 text-yellow-500" />
-            <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
+            <LogIn className="h-8 w-8 text-red-500" />
+            <h1 className="text-2xl font-bold text-gray-900">Welcome Back to Zenra Health</h1>
           </div>
 
           {error && (
@@ -64,7 +67,7 @@ export function Login() {
                 id="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
@@ -78,14 +81,14 @@ export function Login() {
                 id="password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-indigo-500 focus:ring-0 pl-2"
+                className="mt-1 block w-full border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2 text-sm focus:border-red-500 focus:ring-0 pl-2"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+              className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
               disabled={loginMutation.isPending}
             >
               {loginMutation.isPending ? (
@@ -100,8 +103,11 @@ export function Login() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="font-medium text-yellow-500 hover:text-yellow-600">
-                Sign up
+              <Link
+                to="/register"
+                className="font-medium text-red-500 hover:text-red-600"
+              >
+                Create Account
               </Link>
             </p>
           </div>
