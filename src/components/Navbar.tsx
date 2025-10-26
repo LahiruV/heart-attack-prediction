@@ -2,9 +2,11 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, LogOut, Activity } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
+import { PredictFormModal } from './PredictFormModal'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isPredictModalOpen, setPredictModalOpen] = React.useState(false)
   const location = useLocation()
   const { isAuthenticated, logout } = useAuth()
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register'
@@ -52,12 +54,12 @@ export function Navbar() {
               </>
             ) : (
               <>
-                <Link
-                  to="/predict"
+                <button
+                  onClick={() => setPredictModalOpen(true)}
                   className="ml-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition"
                 >
                   Predict Now
-                </Link>
+                </button>
                 <button
                   onClick={logout}
                   className="text-gray-700 hover:text-red-500 flex items-center space-x-1"
@@ -67,7 +69,10 @@ export function Navbar() {
                 </button>
               </>
             )}
-
+            <PredictFormModal
+              isOpen={isPredictModalOpen}
+              onClose={() => setPredictModalOpen(false)}
+            />
             {/* Predict Heart Probability Button */}
             {/* {!isAuthPage && (
               <Link
