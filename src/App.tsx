@@ -11,13 +11,7 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Register } from './pages/Register'
-import { AdminLogin } from './pages/AdminLogin'
-import { AdminRegister } from './pages/AdminRegister'
-import { AdminDashboard } from './pages/AdminDashboard'
 import { AuthProvider } from './contexts/AuthContext'
-import { Events } from './pages/Events'
-import { BookingForm } from './pages/BookingForm'
-import { MyBookingList } from './pages/MyBookings'
 
 const queryClient = new QueryClient()
 
@@ -33,8 +27,6 @@ function App() {
               <Route element={<AuthLayout />}>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin/register" element={<AdminRegister />} />
               </Route>
 
               {/* Admin Routes */}
@@ -43,7 +35,6 @@ function App() {
                   <AdminLayout />
                 </ProtectedRoute>
               }>
-                <Route index element={<AdminDashboard />} />
               </Route>
 
               {/* User Routes */}
@@ -53,9 +44,6 @@ function App() {
                 </ProtectedRoute>
               }>
                 <Route path="/" element={<Home />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/bookingform" element={<BookingForm />} />
-                <Route path="/mybookings" element={<MyBookingList />} />
               </Route>
             </Routes>
           </Router>
