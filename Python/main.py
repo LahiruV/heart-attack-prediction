@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS 
 import joblib
 import pandas as pd
 import numpy as np
 
-
 app = Flask(__name__)
+
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 MODEL_PATH = "heart_attack_rf_model.pkl"
 SCALER_PATH = "scaler.pkl"
@@ -20,7 +22,7 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    try:        
+    try:
         data = request.get_json()
 
         expected_features = [

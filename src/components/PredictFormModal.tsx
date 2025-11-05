@@ -23,7 +23,7 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
 
     if (!isOpen) return null
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
@@ -68,18 +68,35 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
 
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">Heart Attack Prediction</h2>
 
-                <form onSubmit={handleSubmit} className="space-y-3">
+                <form onSubmit={handleSubmit} className="space-y-3" style={{
+                    maxHeight: '75vh',
+                    overflowY: 'auto'
+                }}>
                     {Object.keys(formData).map((key) => (
                         <div key={key}>
                             <label className="block text-sm font-medium text-gray-700 mb-1">{key}</label>
-                            <input
-                                type="number"
-                                name={key}
-                                value={(formData as any)[key]}
-                                onChange={handleChange}
-                                required
-                                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-red-400 outline-none"
-                            />
+                            {key === "Gender" ? (
+                                <select
+                                    name="Gender"
+                                    value={formData.Gender}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-red-400 outline-none"
+                                >
+                                    <option value="">Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            ) : (
+                                <input
+                                    type="number"
+                                    name={key}
+                                    value={(formData as any)[key]}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-red-400 outline-none"
+                                />
+                            )}
                         </div>
                     ))}
 
@@ -89,6 +106,13 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
                         className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-md flex justify-center items-center"
                     >
                         {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Predict"}
+                    </button>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-md flex justify-center items-center"
+                    >
+                        {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Save Prediction"}
                     </button>
                 </form>
 
