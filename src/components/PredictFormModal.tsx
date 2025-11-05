@@ -107,13 +107,6 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
                     >
                         {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Predict"}
                     </button>
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-md flex justify-center items-center"
-                    >
-                        {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Save Prediction"}
-                    </button>
                 </form>
 
                 {error && <p className="text-red-500 text-center mt-3">{error}</p>}
