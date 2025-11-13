@@ -34,7 +34,6 @@ exports.savePrediction = async (req, res) => {
 
 exports.getPredictionsByUser = async (req, res) => {
     const { userID } = req.params;
-
     try {
         const db = await connectDB();
         const predictions = await db.collection("predictions").find({ userID }).toArray();
