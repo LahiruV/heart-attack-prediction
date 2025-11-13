@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { X, Loader2 } from "lucide-react"
-import { useSavePrediction } from "../services/queries"
+import { useSavePrediction, useUser } from "../services/queries"
 
 interface PredictFormModalProps {
     isOpen: boolean
@@ -9,6 +9,7 @@ interface PredictFormModalProps {
 
 export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
     const { mutate: savePredictionMutate } = useSavePrediction()
+    const { data: user } = useUser()
     const [formData, setFormData] = useState({
         Age: "",
         Gender: "",
@@ -58,7 +59,7 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
                 setError(data.error || "Something went wrong.")
             }
             const savePayload = {
-                userID: "current-user-id",
+                userID: user?._id || "current-user-id",
                 age: formData.Age.toString(),
                 gender: formData.Gender.toString(),
                 heartRate: formData["Heart rate"].toString(),
