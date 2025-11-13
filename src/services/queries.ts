@@ -44,3 +44,34 @@ export const useSendMail = () => {
     },
   })
 }
+
+// Prediction queries
+
+export const useSavePrediction = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (data: {
+      userID: string,
+      age: string,
+      gender: string,
+      heartRate: string,
+      symbolicBloodPressure: string,
+      diastolicBloodPressure: string,
+      bloodSugar: string,
+      ckMb: string,
+      troponin: string,
+      predictionResult: string
+    }) => api.savePrediction(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['save-prediction'] })
+    },
+  })
+}
+
+export const useGetPredictionsByUser = (userID: string) => {
+  return useQuery({
+    queryKey: ['predictions-by-user', userID],
+    queryFn: () => api.getPredictionsByUser(userID),
+    retry: false,
+  })
+}
