@@ -8,6 +8,7 @@ const swaggerFile = require("./swagger-output.json");
 
 const authRoutes = require("./routes/auth");
 const mailRoutes = require("./routes/mail");
+const predictionRoutes = require("./routes/prediction");
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // === API Routes ===
 app.use("/api/auth", authRoutes);
 app.use("/api/mail", mailRoutes);
+app.use("/api/prediction", predictionRoutes);
 
 // === Swagger UI (based on generated JSON) ===
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
