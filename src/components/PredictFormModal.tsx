@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { X, Loader2 } from "lucide-react"
+import { useSavePrediction } from "../services/queries"
 
 interface PredictFormModalProps {
     isOpen: boolean
@@ -7,6 +8,7 @@ interface PredictFormModalProps {
 }
 
 export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
+    const { mutate: savePredictionMutate } = useSavePrediction()
     const [formData, setFormData] = useState({
         Age: "",
         Gender: "",
@@ -50,8 +52,40 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
             })
 
             const data = await res.json()
-            if (res.ok) setResult(data)
-            else setError(data.error || "Something went wrong.")
+            if (res.ok) {
+                setResult(data)
+            } else {
+                setError(data.error || "Something went wrong.")
+            }
+            const savePayload = {
+                userID: "current-user-id",
+                age: formData.Age.toString(),
+                gender: formData.Gender.toString(),
+                heartRate: formData["Heart rate"].toString(),
+                symbolicBloodPressure: formData["Systolic blood pressure"].toString(),
+                diastolicBloodPressure: formData["Diastolic blood pressure"].toString(),
+                bloodSugar: formData["Blood sugar"].toString(),
+                ckMb: formData["CK-MB"].toString(),
+                troponin: formData["Troponin"].toString(),
+                predictionResult: data.Prediction.toString(),
+            }
+            savePredictionMutate(savePayload, {
+                onSuccess: () => {
+                    setFormData({
+                        Age: "",
+                        Gender: "",
+                        "Heart rate": "",
+                        "Systolic blood pressure": "",
+                        "Diastolic blood pressure": "",
+                        "Blood sugar": "",
+                        "CK-MB": "",
+                        Troponin: "",
+                    });
+                },
+                onError: (error: any) => {
+                    console.log('Error saving prediction:', error);
+                }
+            })
         } catch (err: any) {
             setError(err.message)
         } finally {
