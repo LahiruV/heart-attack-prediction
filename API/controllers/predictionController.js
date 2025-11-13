@@ -1,3 +1,5 @@
+const connectDB = require("../models/db");
+
 exports.savePrediction = async (req, res) => {
     const {
         userID,
