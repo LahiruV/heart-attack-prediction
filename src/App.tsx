@@ -12,6 +12,7 @@ import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Register } from './pages/Register'
 import { AuthProvider } from './contexts/AuthContext'
+import { MyPredictions } from './pages/MyPredictions'
 
 const queryClient = new QueryClient()
 
@@ -44,6 +45,7 @@ function App() {
                 </ProtectedRoute>
               }>
                 <Route path="/" element={<Home />} />
+                <Route path="/mycheckups" element={<MyPredictions />} />
               </Route>
             </Routes>
           </Router>

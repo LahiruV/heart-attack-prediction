@@ -51,13 +51,13 @@ export function AuthFooter() {
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Phone className="h-4 w-4 text-red-500" />
-                                <span>+94 71 234 5678</span>
+                                <span>+78 99 939 9392</span>
                             </div>
                             <div className="flex items-start space-x-2">
                                 <MapPin className="h-4 w-4 text-red-500 mt-0.5" />
                                 <span>
-                                    SLIIT, Malabe <br />
-                                    Colombo, Sri Lanka
+                                    6 Dripstone Rd,London <br />
+                                    UK
                                 </span>
                             </div>
                         </div>

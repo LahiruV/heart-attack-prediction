@@ -56,15 +56,16 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-gray-600">
                 <Mail className="h-4 w-4 text-red-500" />
-                <span>support@Zenra Healths.ai</span>
+                <span>support@zenrahealth.com</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Phone className="h-4 w-4 text-red-500" />
-                <span>+94 71 234 5678</span>
+                <span>+78 99 939 9392</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <MapPin className="h-4 w-4 text-red-500" />
-                <span>SLIIT, Malabe<br />Colombo, Sri Lanka</span>
+                <span>6 Dripstone Rd,London <br />
+                  UK</span>
               </li>
             </ul>
           </div>
