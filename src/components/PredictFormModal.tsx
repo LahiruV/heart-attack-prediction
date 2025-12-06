@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { X, Loader2 } from "lucide-react"
 import { useSavePrediction, useUser } from "../services/queries"
+import { useQueryClient } from "@tanstack/react-query"
 
 interface PredictFormModalProps {
     isOpen: boolean
@@ -23,6 +24,14 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState<{ Prediction: string; Probability: number } | null>(null)
     const [error, setError] = useState<string | null>(null)
+    const queryClient = useQueryClient();
+
+    useEffect(() => {
+        if (formData.Age === "") {
+            setResult(null)
+            setError(null)
+        }
+    }, [formData])
 
     if (!isOpen) return null
 
@@ -81,6 +90,9 @@ export function PredictFormModal({ isOpen, onClose }: PredictFormModalProps) {
                         "Blood sugar": "",
                         "CK-MB": "",
                         Troponin: "",
+                    });
+                    queryClient.invalidateQueries({
+                        queryKey: ["predictions-by-user", user?._id],
                     });
                 },
                 onError: (error: any) => {
