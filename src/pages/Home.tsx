@@ -14,7 +14,7 @@ const dummyFeedbacks: FeedbackItem[] = [
   {
     id: '1',
     name: 'Dr. Kavin Perera',
-    message: 'Zenra Healths helped me assess my patients’ heart attack risks quickly and accurately. Excellent tool!',
+    message: 'Yenuka Healths helped me assess my patients’ heart attack risks quickly and accurately. Excellent tool!',
     type: 'positive',
     createdAt: new Date('2025-03-14'),
   },
@@ -28,7 +28,7 @@ const dummyFeedbacks: FeedbackItem[] = [
   {
     id: '3',
     name: 'Isabelle Thomas',
-    message: 'Beautiful, simple interface. I used Zenra Healths to check my vitals and track my results over time.',
+    message: 'Beautiful, simple interface. I used Yenuka Healths to check my vitals and track my results over time.',
     type: 'positive',
     createdAt: new Date('2025-05-21'),
   },
@@ -53,10 +53,10 @@ export function Home() {
           >
             <div className="flex items-center justify-center space-x-3 mb-4">
               <HeartPulse className="h-8 w-8 text-red-500" />
-              <h2 className="text-3xl font-bold text-gray-900">Zenra Healths Feedback</h2>
+              <h2 className="text-3xl font-bold text-gray-900">Yenuka Healths Feedback</h2>
             </div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              See how people are using Zenra Healths to monitor their vitals, predict heart attack risks, and live healthier lives.
+              See how people are using Yenuka Healths to monitor their vitals, predict heart attack risks, and live healthier lives.
             </p>
           </motion.div>
 

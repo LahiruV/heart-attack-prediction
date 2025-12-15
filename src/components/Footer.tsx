@@ -12,7 +12,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <HeartPulse className="h-6 w-6 text-red-500" />
-              <h3 className="text-lg font-semibold text-gray-900">About Zenra Healths</h3>
+              <h3 className="text-lg font-semibold text-gray-900">About Yenuka Healths</h3>
             </div>
             <p className="text-gray-600">
               A smart health prediction platform that helps assess the probability of heart attack risks using AI-based analysis.
@@ -56,7 +56,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center space-x-2 text-gray-600">
                 <Mail className="h-4 w-4 text-red-500" />
-                <span>support@zenrahealth.com</span>
+                <span>support@yenukahealth.com</span>
               </li>
               <li className="flex items-center space-x-2 text-gray-600">
                 <Phone className="h-4 w-4 text-red-500" />
@@ -74,7 +74,7 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-600">
-              © {currentYear} Zenra Healths. All rights reserved.
+              © {currentYear} Yenuka Healths. All rights reserved.
             </p>
             <div className="flex items-center space-x-2 mt-4 md:mt-0">
               <span className="text-gray-600">Empowering lives with</span>

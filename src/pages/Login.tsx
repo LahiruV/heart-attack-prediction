@@ -48,7 +48,7 @@ export function Login() {
         <div className="w-full lg:w-1/2 p-8">
           <div className="flex items-center justify-center space-x-3 mb-8">
             <LogIn className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">Welcome Back to Zenra Health</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Welcome Back to Yenuka Health</h1>
           </div>
 
           {error && (

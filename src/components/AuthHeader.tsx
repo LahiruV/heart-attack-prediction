@@ -13,7 +13,7 @@ export function AuthHeader() {
           <Link to="/" className="flex items-center space-x-2">
             <Activity className="h-6 w-6 text-red-500" />
             <Link to="/" className="text-xl font-bold text-red-500">
-              <span className="text-gray-500">Zenra</span> Health
+              <span className="text-gray-500">Yenuka</span> Health
             </Link>
           </Link>
 

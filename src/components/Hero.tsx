@@ -21,7 +21,7 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Welcome to <span className="text-red-400">Zenra Healths</span>
+            Welcome to <span className="text-red-400">Yenuka Healths</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
